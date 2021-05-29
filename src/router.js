@@ -5,7 +5,15 @@ import AboutUs from "./components/AboutUsComponent";
 import Home from "./components/HomeComponent";
 import Menu from "./components/Menu";
 import { DISHES } from "./shared/dish";
+import DishDetailComponent from "./components/DishDetailComponent";
 
+const DishDetail = ({ match }) => {
+  const selectedDish = DISHES.filter(
+    (dish) => dish.id === parseInt(match.params.dishId)
+  );
+  console.log(selectedDish);
+  return <DishDetailComponent dish={selectedDish[0]} />;
+};
 class Router extends Component {
   render() {
     return (
@@ -15,6 +23,7 @@ class Router extends Component {
           <Route exact path="/menu" component={() => <Menu dish={DISHES} />} />
           <Route path="/about-us" component={AboutUs}></Route>
           <Route path="/contact-us" component={ContactUs}></Route>
+          <Route path="/dish-detail/:dishId" component={DishDetail}></Route>
           <Redirect to="/home" />
         </Switch>
       </React.Fragment>

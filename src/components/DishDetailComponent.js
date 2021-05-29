@@ -1,4 +1,6 @@
-import React from "react";
+//class based component
+
+import React, { Component } from "react";
 import {
   Card,
   CardImg,
@@ -11,12 +13,10 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { PROMOTIONS } from "../shared/promotion";
-import { LEADERS } from "../shared/leaders";
 
-function RenderCard({ dishes }) {
+function RenderDish({ dishes }) {
   return (
-    <Col xs="12" sm="6" md="4" lg="4" className="mt-4">
+    <Col xs="12" sm="6" md="4" lg="4" className="mt-3">
       <Card>
         <CardImg
           top="200px"
@@ -25,6 +25,7 @@ function RenderCard({ dishes }) {
           src={dishes.image}
           alt="Card image cap"
         />
+
         <CardBody>
           <CardTitle tag="h5">{dishes.name}</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">
@@ -39,19 +40,15 @@ function RenderCard({ dishes }) {
   );
 }
 
-function Home(props) {
+const DishDetailComponent = (props) => {
   return (
-    <div className="container">
-      <h4>Home</h4>
+    <div class="container">
+      <h1>Dish Detail</h1>
       <div className="row">
-        <RenderCard dishes={PROMOTIONS} />
-      </div>
-
-      <div className="row">
-        <RenderCard dishes={PROMOTIONS} />
+        <RenderDish dishes={props.dish} />
       </div>
     </div>
   );
-}
+};
 
-export default Home;
+export default DishDetailComponent;

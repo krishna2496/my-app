@@ -1,56 +1,84 @@
-import React from "react";
+import React, { Component } from "react";
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
-function ContactUs(props) {
-  return (
-    <div className="container">
-      <div className="row row-content">
-        <div className="col-12">
-          <h3>Location Information</h3>
-        </div>
-        <div className="col-12 col-sm-4 offset-sm-1">
-          <h5>Our Address</h5>
-          <address>
-            121, Clear Water Bay Road
-            <br />
-            Clear Water Bay, Kowloon
-            <br />
-            HONG KONG
-            <br />
-            <i className="fa fa-phone"></i>: +852 1234 5678
-            <br />
-            <i className="fa fa-fax"></i>: +852 8765 4321
-            <br />
-            <i className="fa fa-envelope"></i>:{" "}
-            <a href="mailto:confusion@food.net">confusion@food.net</a>
-          </address>
-        </div>
-        <div className="col-12 col-sm-6 offset-sm-1">
-          <h5>Map of our Location</h5>
-        </div>
-        <div className="col-12 col-sm-11 offset-sm-1">
-          <div className="btn-group" role="group">
-            <a
-              role="button"
-              className="btn btn-primary"
-              href="tel:+85212345678"
-            >
-              <i className="fa fa-phone"></i> Call
-            </a>
-            <a role="button" className="btn btn-info">
-              <i className="fa fa-skype"></i> Skype
-            </a>
-            <a
-              role="button"
-              className="btn btn-success"
-              href="mailto:confusion@food.net"
-            >
-              <i className="fa fa-envelope-o"></i> Email
-            </a>
+// function ContactUs(props) {
+//   return (
+//     <div className="container">
+//       {/* contact us form */}
+//       <div className="row">
+//         <div className="col-md-12">
+//           <h1>Send Us</h1>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+class ContactUs extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      firstName: "",
+      lastName: "",
+    };
+
+    this.handleFormChange = this.handleFormChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleFormChange(event) {
+    const targetV = event.target;
+    const value = targetV.value;
+    const name = targetV.name;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleSubmit(event) {
+    //alert("form" + JSON.stringify(this.state));
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <Form onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="col-md-12">
+              <FormGroup>
+                <Label for="firstName">First Name</Label>
+                <Input
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  value={this.state.firstName}
+                  onChange={this.handleFormChange}
+                  placeholder="first Name"
+                />
+              </FormGroup>
+            </div>
+
+            <div className="col-md-12">
+              <FormGroup>
+                <Label for="lastName">Last Name</Label>
+                <Input
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  value={this.state.lastName}
+                  onChange={this.handleFormChange}
+                  placeholder="lastName placeholder"
+                />
+              </FormGroup>
+            </div>
           </div>
-        </div>
+          <Button>Submit</Button>
+        </Form>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default ContactUs;
