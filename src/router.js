@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import ContactUs from "./components/ContactUsComponent";
 import AboutUs from "./components/AboutUsComponent";
 import Home from "./components/HomeComponent";
 import Menu from "./components/Menu";
 import { DISHES } from "./shared/dish";
 import DishDetailComponent from "./components/DishDetailComponent";
+import { connect } from "react-redux";
+
+const mapState = (state) => {
+  return {
+    dishes: state.dishes,
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders,
+  };
+};
 
 const DishDetail = ({ match }) => {
   const selectedDish = DISHES.filter(
@@ -31,4 +41,4 @@ class Router extends Component {
   }
 }
 
-export default Router;
+export default withRouter(connect(mapState)(Router));
