@@ -1,5 +1,6 @@
 //class based component
 
+import { render } from "@testing-library/react";
 import React, { Component } from "react";
 import {
   Card,
@@ -40,15 +41,45 @@ function RenderDish({ dishes }) {
   );
 }
 
-const DishDetailComponent = (props) => {
+function RenderComment({ comment }) {
+  console.log(comment);
   return (
-    <div class="container">
-      <h1>Dish Detail</h1>
-      <div className="row">
-        <RenderDish dishes={props.dish} />
-      </div>
-    </div>
+    <Col xs="12" sm="6" md="4" lg="4" className="mt-3">
+      <div>{comment.comment}</div>
+    </Col>
   );
-};
+}
 
+class DishDetailComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
+  }
+
+  handleCommentSubmit() {
+    alert("in");
+    debugger;
+    this.props.postComment(90, 1, "krishna", "testreact");
+  }
+
+  render() {
+    return (
+      <div class="container">
+        <h1>Dish Detail</h1>
+        <div className="row">
+          <RenderDish dishes={this.props.dish} />
+        </div>
+        <div className="row">
+          {this.props.comment.map((comment) => {
+            console.log("comment", comment);
+            return <RenderComment comment={comment} />;
+          })}
+        </div>
+        <div className="row">
+          <Button onClick={this.handleCommentSubmit}>Add comment</Button>
+        </div>
+      </div>
+    );
+  }
+}
 export default DishDetailComponent;

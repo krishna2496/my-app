@@ -12,12 +12,17 @@ code {
     monospace;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
 .headerNav {
   display: flex;
 }
+
 .headerNav li {
   margin-right: 50px;
 }
+
 .footer {
   bottom: 0;
   position: absolute;

@@ -58,6 +58,9 @@ class Header extends Component {
               <Link to="/contact-us">Contact Us</Link>
             </li>
             <li>
+              <Link to="/sing-up">SignUp</Link>
+            </li>
+            <li>
               <Button outline onClick={this.toggleModal}>
                 <span className="fa fa-sign-in fa-lg"></span> Login
               </Button>
